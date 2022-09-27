@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: true
-          path: unity
+          path: .
     
       # Cache
       - uses: actions/cache@v3
@@ -62,14 +62,19 @@ jobs:
           name: Build
           path: build
 
-      - name: Zip build
-        run: |
-          pushd build/${{ matrix.targetPlatform }}
-          zip -r ../../${{ matrix.targetPlatform }}.zip .
-          popd
+      # - name: Zip build
+      #   run: |
+      #     pushd build/${{ matrix.targetPlatform }}
+      #     zip -r ../../${{ matrix.targetPlatform }}.zip .
+      #     popd
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: ${{ matrix.targetPlatform }}.zip
+      #     name: Release ${{ github.ref }}
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          files: ${{ matrix.targetPlatform }}.zip
-          name: Release ${{ github.ref }}
+          folder: build/${{ matrix.targetPlatform }} # The folder the action should deploy.          
