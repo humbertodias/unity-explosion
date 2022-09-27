@@ -36,3 +36,5 @@ sysinfo.txt
 *.unitypackage
 
 Logs
+.idea
+.vsconfig
