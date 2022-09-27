@@ -5,3 +5,5 @@ Following the tutorial [explodindo-um-cenário](https://medium.com/@kleberandrad
 Tested on **Linux** using Unity version **2021.3.10f1**
 
 ![](demo.gif)
+
+[Play](http://humbertodias.github.io/unity-explosion)
