@@ -38,15 +38,6 @@ jobs:
           restore-keys: |
             Library-
 
-      #  # Test
-      # - name: Run tests
-      #   uses: game-ci/unity-test-runner@v2
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #   with:
-      #     projectPath: .
-      #     githubToken: ${{ secrets.GITHUB_TOKEN }}
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -56,25 +47,7 @@ jobs:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
 
-      # Output 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
-
-      # - name: Zip build
-      #   run: |
-      #     pushd build/${{ matrix.targetPlatform }}
-      #     zip -r ../../${{ matrix.targetPlatform }}.zip .
-      #     popd
-
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     files: ${{ matrix.targetPlatform }}.zip
-      #     name: Release ${{ github.ref }}
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/${{ matrix.targetPlatform }} # The folder the action should deploy.          
+          folder: build/${{ matrix.targetPlatform }}/WebGL # The folder the action should deploy.          
